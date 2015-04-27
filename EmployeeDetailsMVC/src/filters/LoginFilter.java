@@ -18,7 +18,7 @@ import org.apache.log4j.Logger;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter(filterName="LoginFilter" , urlPatterns={"/controllerServlet"})
+@WebFilter(filterName="LoginFilter" , urlPatterns={"/LoginServlet"})
 public class LoginFilter implements Filter {
 	private static Logger log = Logger.getLogger(LoginFilter.class);
     /**
@@ -50,12 +50,13 @@ public class LoginFilter implements Filter {
 		log.info("URI Name ="+ uri);
 		String login = req.getParameter("login");
 		String passwd = req.getParameter("passwd");
-		System.out.println(" "+(login)+"||"+(passwd)+"||"+(!(login.equals("HR") && passwd.equals("hr"))));
-		System.out.println("Authorized User? "+(login.equals("HR") && passwd.equals("hr")));
+		log.debug(" "+(login)+"||"+(passwd)+"||"+(!(login.equals("HR") && passwd.equals("hr"))));
+		log.debug("Authorized User? "+(login.equals("HR") && passwd.equals("hr")));
+		
 		if(login.equals("HR") && passwd.equals("hr")){
 			// pass the request along the filter chain
-			request.setAttribute("login", login);
-			request.setAttribute("passwd", passwd);
+			//request.setAttribute("login", login);
+			//request.setAttribute("passwd", passwd);
 			chain.doFilter(request, response);
 			
 		}else {

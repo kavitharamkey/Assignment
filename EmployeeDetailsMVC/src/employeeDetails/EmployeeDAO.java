@@ -4,53 +4,35 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.log4j.Logger;
+
 public class EmployeeDAO {
-	private static String driver = "oracle.jdbc.driver.OracleDriver";
-	private static String connectionURL = "jdbc:oracle:thin:@localhost:1521/XE";
-	private static Connection con = null;
-	private static Statement stmt =null;
 	
+	private static Statement stmt =null;
 	private ResultSet rs = null;
 	public List<EmployeeBean> empList = null;
+	private static Logger log = Logger.getLogger(EmployeeDAO.class);
 	
 	
-	public EmployeeDAO(){
-	try {
-		con = getConnection();
-	}catch(Exception exp){
-		exp.printStackTrace();
-		//send a message to servlet
-	}
+	public EmployeeDAO(Connection con,int location_id){
 	try{
 		empList = new ArrayList<EmployeeBean>();
-		getEmployeeInfo(con);
+		getEmployeeInfo(con,location_id);
 	}catch(Exception exp){
 		exp.printStackTrace();
-	}finally{
-		closeConnection(stmt,con);
 	}
 	
 	}
 	
 
-	private static Connection getConnection() throws ClassNotFoundException, Exception{
-		try{
-			Class.forName(driver);
-			con = DriverManager.getConnection(connectionURL,"HR","hr");
-		}catch(ClassNotFoundException exp){
-			exp.printStackTrace();
-			throw exp;
-		}catch(Exception exp){
-			exp.printStackTrace();
-			throw exp;
-		}
-		return con;
-	}
 	
-	public void getEmployeeInfo(Connection con) throws SQLException {
+	public void getEmployeeInfo(Connection con,int location_id) throws SQLException {
 		try{
 			stmt = con.createStatement(); // Step 3
-			rs = stmt.executeQuery("select employee_id, first_name,last_name,salary,department_id from employees where salary > 4000 order by salary "); // Step 4
+			String query = "select employee_id, first_name,last_name,salary,e.department_id from employees e,departments d where e.department_id=d.department_id and d.location_id = "+location_id+" order by salary ";
+			rs = stmt.executeQuery(query);
+				//executeQuery(); // Step 4
+			log.debug("Employee Query : \n"+query);
 			while (rs.next()) {
 				EmployeeBean empbean = new EmployeeBean();
 				empbean.setEmpId(rs.getInt("employee_id"));
@@ -65,21 +47,13 @@ public class EmployeeDAO {
 			exp.printStackTrace();
 			throw exp;
 		  }finally{
+			  if (stmt != null){
+				  stmt.close();
+			  }
 			  if(rs != null){
 					rs.close();
 				} 
 		  }
 	}
-	private void closeConnection(Statement stmt , Connection con){
-		try{
-			if(stmt != null){
-				stmt.close();
-			}
-			if(con != null){
-				con.close();
-			}
-		}catch(Exception exp){
-			exp.printStackTrace();
-		}
-	}
+	
 }

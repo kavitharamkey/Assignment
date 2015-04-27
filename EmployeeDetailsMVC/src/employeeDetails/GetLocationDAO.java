@@ -1,7 +1,6 @@
 package employeeDetails;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,9 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GetLocationDAO {
-	private static String driver = "oracle.jdbc.driver.OracleDriver";
-	private static String connectionURL = "jdbc:oracle:thin:@localhost:1521/XE";
-	//private static Connection con = null;
+	
 	private static Statement stmt =null;
 	private ResultSet rs = null;
 	public List<LocationBean> locationList = null;
@@ -48,6 +45,9 @@ public class GetLocationDAO {
 			exp.printStackTrace();
 			throw exp;
 		  }finally{
+			  if (stmt != null){
+				  stmt.close();
+			  }
 			  if(rs != null){
 					rs.close();
 				} 
