@@ -50,10 +50,10 @@ public class LoginFilter implements Filter {
 		log.info("URI Name ="+ uri);
 		String login = req.getParameter("login");
 		String passwd = req.getParameter("passwd");
-		log.debug(" "+(login)+"||"+(passwd)+"||"+(!(login.equals("HR") && passwd.equals("hr"))));
-		log.debug("Authorized User? "+(login.equals("HR") && passwd.equals("hr")));
+		log.debug(" "+(login)+"||"+(passwd)+"||"+(!(login.equalsIgnoreCase("HR") && passwd.equalsIgnoreCase("hr"))));
+		log.debug("Authorized User? "+(login.equalsIgnoreCase("HR") && passwd.equalsIgnoreCase("hr")));
 		
-		if(login.equals("HR") && passwd.equals("hr")){
+		if(login.equalsIgnoreCase("HR") && passwd.equalsIgnoreCase("hr")){
 			// pass the request along the filter chain
 			//request.setAttribute("login", login);
 			//request.setAttribute("passwd", passwd);
