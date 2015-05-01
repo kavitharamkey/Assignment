@@ -1,6 +1,4 @@
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="employeeDetails.LocationBean"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -15,24 +13,24 @@
 <a href="Logout.jsp" >logout</a>
 </p>
 <form action = "ControllerServlet" method = "POST">
-<h2> Select the Location of your department: </h2>
+<h2> Select the Location of your department: </h2> <BR>
+<c:out value="My new JSTL excercise"/>
 <select name="location_id" id="location_id">
 <option value="1" selected>Please select one </option>
-<%
-	List<LocationBean> locList = (List<LocationBean>)request.getAttribute("locList");
-	if (locList == null){
-		response.sendRedirect("DataError.jsp");
-	}
-	else{
-		for (LocationBean locbean : locList){
-%>
-<option value= "<%=locbean.getLocationId() %>"> 
-<%=locbean.getState() %> , <%=locbean.getCountry() %>
-</option>
-<%
-} //Close For loop
-} //close else condition
-%>
+
+<c:set var="locList" scope="request" value="${locList}"/>
+<c:if test="${empty locList}">
+   <c:redirect context = "/DataError.jsp" />
+</c:if>
+<jsp:useBean id="locBean"	class="employeeDetails.LocationBean">
+</jsp:useBean>
+<c:forEach var="locBean" items="${locList}">
+   <option value='<jsp:getProperty name="locBean" property="locationId"/>'>
+          <jsp:getProperty name="locBean" property="state"/>,
+          <jsp:getProperty name="locBean" property="country"/>
+   </option>  
+</c:forEach>
+
 </select>
 <input type = "submit" value = "Get Employee Details" />
 </form>
