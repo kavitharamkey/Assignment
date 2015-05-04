@@ -20,6 +20,7 @@
 
 <c:set var="locList" scope="request" value="${locList}"/>
 <c:if test="${empty locList}">
+   <% System.out.println("empty list"); %>
    <c:redirect context = "/DataError.jsp" />
 </c:if>
 <jsp:useBean id="locBean"	class="employeeDetails.LocationBean">
