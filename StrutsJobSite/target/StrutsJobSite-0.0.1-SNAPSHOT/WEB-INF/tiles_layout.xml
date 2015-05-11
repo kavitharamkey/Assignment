@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/tiles/baseLayout.jsp">
+		<put-attribute name="header" value="/tiles/header.jsp" />
+		<put-attribute name="left" value="/tiles/leftpane.jsp" />
+		<put-attribute name="body" value="/tiles/body.jsp" />
+		<put-attribute name="right" value="/tiles/rightpane.jsp" />
+		<put-attribute name="footer" value="/tiles/footer.jsp" />
+	</definition>
+
+	<definition name="firstpage" extends="baseLayout">
+		<put-attribute name="body" value="/tiles/welcome.jsp" />
+	</definition>
+	
+	<definition name="jobopenings" extends="baseLayout">
+		<put-attribute name="body" value="/tiles/jobopenings.jsp" />
+	</definition>
+
+	<definition name="branchlocations" extends="baseLayout">
+		<put-attribute name="body" value="/tiles/branchlocations.jsp" />
+	</definition>
+	
+	<definition name="customerservice" extends="baseLayout">
+		<put-attribute name="body" value="/tiles/customerservice.jsp" />
+	</definition>
+	
+</tiles-definitions>

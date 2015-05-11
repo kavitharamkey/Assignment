@@ -1,6 +1,7 @@
 <%@page import="com.kavitha.struts.employeeDetails.EmployeeBean"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.List"%>
+<%@taglib uri="/struts-tags" prefix="s" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -12,7 +13,7 @@
 <title>Display Employee Details here</title>
 </head>
 <body>
-<h2> Employee Details you requested are: </h2>
+<h2>Hello  <s:property value="userName"/>, Employee Details you requested are: </h2>
 count:${empList.size()}
 <BR>
 <table>
