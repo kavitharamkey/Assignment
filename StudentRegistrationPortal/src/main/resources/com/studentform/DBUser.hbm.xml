@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?> <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>		
+	<class name="com.studentform.pojo.StudentLogin" table="STUDENT_LOGIN">
+		<meta attribute="class-description"> This class contains the login details. </meta>
+		<id name="username" type="string" column="USERNAME">
+			<generator class="assigned" />
+		</id>
+		<property name="password" column="PASSWORD" type="string" />
+		<property name="createdBy" column="CREATED_BY" type="string" />
+		<property name="createdDate" column="CREATED_DATE" type="date" />
+		<many-to-one name="studentId" column="STUDENT_ID" unique="true" class="com.studentform.pojo.Student" not-null="true" />
+		<!-- <set name="student" cascade="all">
+            <key column="STUDENT_ID" not-null="true" unique="true"/>
+            <one-to-many class="com.studentform.pojo.Student"/>
+        </set> -->
+	</class>
+	
+	<class name="com.studentform.pojo.Student" table="STUDENT">
+<!-- 		<meta attribute="class-description"> This class contains the student detail. </meta>
+		<many-to-one name="studentId" class="com.studentform.pojo.StudentLogin" column="STUDENT_ID" unique="true"/>  -->
+		<id name="studentId" type="int" column="STUDENT_ID">
+			<generator class="native" />
+		</id>
+		<property name="firstName" column="firstname" type="string" />
+		<property name="lastName" column="lastname" type="string" />
+		<property name="dob" column="DOB" type="date" />
+		<property name="gpa" column="GPA" type="float" />
+		<property name="registeredCourses" column="REG_COURSE_ID" type="int" />
+		<property name="street" column="street_name" type="string" />
+		<property name="city" column="city_name" type="string" />
+		<property name="state" column="state_name" type="string" />
+		<property name="zipcode" column="zipcode" type="string" />
+	</class>
+</hibernate-mapping>

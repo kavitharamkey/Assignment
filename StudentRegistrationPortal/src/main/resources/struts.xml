@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+    "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<constant name="struts.enable.DynamicMethodInvocation" value="false" />
+	<constant name="struts.devMode" value="true" />
+
+	<package name="registration" extends="struts-default">
+		<result-types>
+			<result-type name="tiles" class="org.apache.struts2.views.tiles.TilesResult" />
+		</result-types>
+
+		<global-results>
+			<result name="error">/Error.jsp</result>
+		</global-results>
+		
+		<global-exception-mappings>
+			<exception-mapping exception="com.studentform.exception.UserDefinedException" result="error" />
+		</global-exception-mappings>
+
+		<action name="login" class="com.studentform.action.LoginAction" method="login">
+			<result name="success" type = "tiles">firstpage</result>
+			<result name="input">/Login.jsp</result>
+		</action>
+		
+		<action name="logout" class="com.studentform.action.LoginAction" method="logout">
+			<result name="success">/Logout_success.jsp</result>
+			<result name="error">/Error.jsp</result>
+		</action>
+
+		<action name="jobopeningslink" method="getjobopenings"	class="com.studentform.action.MenuAction">
+			<result name="job" type="tiles">jobopenings</result>
+		</action>
+
+		<action name="branchlocationslink" method="getbranchlocations"	class="com.studentform.action.MenuAction">
+			<result name="branch" type="tiles">branchlocations</result>
+		</action>
+		
+		<action name="customerservicelink" method="getcustomerservice"	class="com.studentform.action.MenuAction">
+			<result name="service" type="tiles">customerservice</result>
+		</action>		
+	</package>
+</struts>
