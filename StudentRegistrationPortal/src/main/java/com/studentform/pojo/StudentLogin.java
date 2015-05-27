@@ -19,23 +19,14 @@ public class StudentLogin implements java.io.Serializable {
 	public StudentLogin() {
 	}
  
-	public StudentLogin(Student student, String username,String password, String createdBy,Date createdDate) {
-		//this.studentId = studentId;
+	/*public StudentLogin(Student student, String username,String password, String createdBy,Date createdDate) {
 		this.student = student;
 		this.username = username;
 		this.password = password;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
-	}
-
-
-	/*public int getStudentId() {
-		return this.studentId;
-	}
-
-	public void setStudentId(int studentId) {
-		this.studentId = studentId;
 	}*/
+
 
 	public Student getStudent() {
 		return student;
@@ -82,6 +73,6 @@ public class StudentLogin implements java.io.Serializable {
 	
 	@Override
 	public String toString() {
-		return "\n username ="+ username +"\n createdBy ="+ createdBy+"\n createdDate ="+ createdDate;
+		return "\n username ="+ username +"\n createdBy ="+ createdBy+"\n createdDate ="+ createdDate +"\n Student Obj:" + student;
 	}
 }

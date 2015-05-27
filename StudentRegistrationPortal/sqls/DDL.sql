@@ -17,7 +17,7 @@ CREATE TABLE STUDENT
 	)AUTO_INCREMENT=1000;
 	
 CREATE TABLE STUDENT_LOGIN 
-   (STUDENT_ID INT NOT NULL AUTO_INCREMENT, 
+   (STUDENT_ID INT NOT NULL, 
 	USERNAME VARCHAR(40) NOT NULL , 
 	PASSWORD VARCHAR(20) NOT NULL ,
 	CREATED_BY VARCHAR(20) NOT NULL , 
@@ -34,7 +34,7 @@ select * from student_login;
 select * from student;
 
 insert into student values(1001,"Kavitha","Srinivasan",'1983-11-15',9.9,123,"street","city","state","zipcode");
-insert into student_login values(1001,"kavitha@abc.net","kavitha","manual",'2015-05-22');
+insert into student_login values(1001,"kavitha","kavitha","manual",'2015-05-22');
 	 
 delete from student_login;
 	 

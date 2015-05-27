@@ -51,9 +51,9 @@ public class ManageStudentLogin {
 			Criteria cr = session.createCriteria(StudentLogin.class); // Select * from STudent_Login
 			cr.add(Restrictions.eq("username",login));
 			cr.add(Restrictions.eq("password",password));
-			cr.setProjection(Projections.property("studentId"));
+			cr.setProjection(Projections.property("student.studentId"));
 			List sid = cr.list(); 
-			//System.out.print("returned from DB sid.get(0)  " + sid.get(0));
+			//System.out.print("returned from DB sid.get(0)  " + sid.get(0).toString());
 			System.out.print("size: "+sid.size());
 			id =(Integer) sid.get(0);
 			System.out.println("Studeny ID: " + id);

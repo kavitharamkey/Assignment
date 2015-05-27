@@ -91,6 +91,9 @@ public class Student  implements java.io.Serializable {
 		this.zipcode = zipcode;
 	}
 	
-	
+	@Override
+	public String toString() {
+		return "\n name ="+ firstName + " "+lastName+"\n StudentID ="+ studentId;
+	}
 
 }
